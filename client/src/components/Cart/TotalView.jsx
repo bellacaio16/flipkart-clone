@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useCallback } from "react";
 import { Box, Typography, styled } from "@mui/material";
 
 const Header = styled(Box)`
   padding: 15px 24px;
   background: #fff;
-  borderbottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
 `;
 
 const Heading = styled(Typography)`
@@ -40,31 +39,28 @@ const Discount = styled(Typography)`
   color: green;
 `;
 
-
 const TotalView = ({ cartItems, setAmount }) => {
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
 
-  useEffect(() => {
-    totalAmount();
-  }, [cartItems]);
-
-  const totalAmount = () => {
+  const totalAmount = useCallback(() => {
     let price = 0,
       discount = 0;
-    cartItems.map((item) => {
+    cartItems.forEach((item) => {
       price += item.price.mrp;
       discount += item.price.mrp - item.price.cost;
     });
     setPrice(price);
     setDiscount(discount);
     setAmount(price - discount + 40);
-  };
+  }, [cartItems, setAmount]);
+
+  useEffect(() => {
+    totalAmount();
+  }, [totalAmount]);
 
   return (
     <Box>
-      {" "}
-      {/* className={classes.component}> */}
       <Header>
         <Heading>PRICE DETAILS</Heading>
       </Header>
