@@ -1,6 +1,6 @@
 ## Flipkart Frontend Clone
 
-### link : https://flipkart3.netlify.app/
+### link : https://ecommerce16.netlify.app/
 
 ![Screenshot_20230424_023711](https://user-images.githubusercontent.com/70226498/233866420-981320d9-810e-48c9-94da-da47cbc5246f.png)
 
